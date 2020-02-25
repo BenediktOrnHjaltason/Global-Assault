@@ -23,6 +23,11 @@ public class MyInputManager : MonoBehaviour
     private Vector2 OurInput;
     public float InputMultiplier;
 
+    private Vector3 Axis1 = new Vector3(0.0f, 1.0f, 0.0f);
+    private Vector3 Axis2 = new Vector3(1.0f, 0.0f, 0.0f);
+
+    public GameObject Ball;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,11 +57,14 @@ public class MyInputManager : MonoBehaviour
 
         OurInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
 
+
         if (OurInput.x != 0 || OurInput.y != 0)
         {
-            AvatarSceneCompInner.transform.Rotate(OurInput.y * InputMultiplier, 0.0f, 0.0f, Space.Self);
-            AvatarSceneCompOuter.transform.Rotate(0.0f, -OurInput.x * InputMultiplier, 0.0f, Space.Self);
+            Ball.transform.Rotate(0.0f, OurInput.x * InputMultiplier, 0, Space.World);
+            AvatarSceneCompOuter.transform.Rotate(OurInput.y * InputMultiplier, 0.0f, 0.0f, Space.Self);
+            
         }
+
 
 
         LinePositions[0] = RightHandAnchor.transform.position;

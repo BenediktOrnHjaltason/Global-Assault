@@ -421,6 +421,7 @@ MonoBehaviour:
   AvatarSceneCompInner: {fileID: 2054936136}
   AvatarSceneCompOuter: {fileID: 872161908}
   InputMultiplier: 0.3
+  Ball: {fileID: 1416882629}
 --- !u!4 &1377141418
 Transform:
   m_ObjectHideFlags: 0
@@ -546,7 +547,7 @@ GameObject:
   - component: {fileID: 1416882631}
   - component: {fileID: 1416882630}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,7 +584,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f258e93652b39f240bb4eb95f150258e, type: 2}
+  - {fileID: 2100000, guid: 5c3d5738fa2d6483bb8a2af0a6f50a66, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -673,6 +674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2054936137}
+  - component: {fileID: 2054936138}
   m_Layer: 0
   m_Name: AvatarSceneCompInner
   m_TagString: Untagged
@@ -695,6 +697,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1818360609 &2054936138
+RotationConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054936136}
+  m_Enabled: 1
+  m_Weight: 1
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 0, z: 0}
+  m_AffectRotationX: 0
+  m_AffectRotationY: 0
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 0
+  m_Sources: []
 --- !u!1 &2102560629
 GameObject:
   m_ObjectHideFlags: 0
