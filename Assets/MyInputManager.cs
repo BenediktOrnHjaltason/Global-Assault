@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class MyInputManager : MonoBehaviour
 {
-    public Vector3 LeftControllerWorldLocation;
-    public Vector3 RightControllerWorldLocation;
-
-    public Quaternion LeftControllerRotation;
-    public Quaternion RightControllerRotation;
 
     //Set in inspector
     public Component RightHandAnchor;
@@ -19,6 +14,15 @@ public class MyInputManager : MonoBehaviour
     public LineRenderer RightHandRay;
     private Vector3[] LinePositions = new Vector3[2];
 
+    public GameObject Gun;
+    public GameObject AvatarRigBase;
+    public GameObject AvatarSceneCompInner;
+    public GameObject AvatarSceneCompOuter;
+
+    private Vector3 AnglesToTurn;
+    private Vector2 OurInput;
+    public float InputMultiplier;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +32,7 @@ public class MyInputManager : MonoBehaviour
     void Update()
     {
         //if (OVRInput.GetDown(OVRInput.Button.One)) Debug.LogWarning("Controller A pressed");
+        
 
         OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand);
         //Debug.LogWarning("Right Position: " + this.transform.position + OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand));
@@ -45,10 +50,21 @@ public class MyInputManager : MonoBehaviour
         Debug.DrawLine(LeftHandAnchor.transform.position, LeftHandAnchor.transform.position
         + LeftHandAnchor.transform.forward * 50, debugColor);
 
+        OurInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+
+        if (OurInput.x != 0 || OurInput.y != 0)
+        {
+            AvatarSceneCompInner.transform.Rotate(OurInput.y * InputMultiplier, 0.0f, 0.0f, Space.Self);
+            AvatarSceneCompOuter.transform.Rotate(0.0f, -OurInput.x * InputMultiplier, 0.0f, Space.Self);
+        }
+
+
         LinePositions[0] = RightHandAnchor.transform.position;
         LinePositions[1] = LinePositions[0] + RightHandAnchor.transform.forward * 50;
 
         RightHandRay.SetPositions(LinePositions);
-        
+
+        Gun.transform.position = RightHandAnchor.transform.position;
+        Gun.transform.rotation = RightHandAnchor.transform.rotation;
     }
 }
