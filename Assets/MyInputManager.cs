@@ -60,7 +60,7 @@ public class MyInputManager : MonoBehaviour
 
         if (OurInput.x != 0 || OurInput.y != 0)
         {
-            Ball.transform.Rotate(0.0f, OurInput.x * InputMultiplier, 0, Space.World);
+            AvatarSceneCompInner.transform.Rotate(0.0f, OurInput.x * InputMultiplier, 0, Space.World);
             AvatarSceneCompOuter.transform.Rotate(OurInput.y * InputMultiplier, 0.0f, 0.0f, Space.Self);
             
         }
