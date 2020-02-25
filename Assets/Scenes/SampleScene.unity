@@ -422,6 +422,8 @@ MonoBehaviour:
   AvatarSceneCompOuter: {fileID: 872161908}
   InputMultiplier: 0.3
   Ball: {fileID: 1416882629}
+  Projectile: {fileID: 8261796792013584985, guid: f56e18e35e3b4fa4d848f7e270a3aee0,
+    type: 3}
 --- !u!4 &1377141418
 Transform:
   m_ObjectHideFlags: 0

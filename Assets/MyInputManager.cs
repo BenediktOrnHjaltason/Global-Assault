@@ -27,6 +27,7 @@ public class MyInputManager : MonoBehaviour
     private Vector3 Axis2 = new Vector3(1.0f, 0.0f, 0.0f);
 
     public GameObject Ball;
+    public GameObject Projectile;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +37,11 @@ public class MyInputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (OVRInput.GetDown(OVRInput.Button.One)) Debug.LogWarning("Controller A pressed");
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) Instantiate(Projectile,
+            RightHandAnchor.transform.position + RightHandAnchor.transform.forward * 5, RightHandAnchor.transform.rotation);
         
 
-        OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand);
+        //OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand);
         //Debug.LogWarning("Right Position: " + this.transform.position + OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand));
         //Debug.LogWarning("Left Potation: " + this.transform.position + OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand));
 
@@ -60,7 +62,7 @@ public class MyInputManager : MonoBehaviour
 
         if (OurInput.x != 0 || OurInput.y != 0)
         {
-            AvatarSceneCompInner.transform.Rotate(0.0f, OurInput.x * InputMultiplier, 0, Space.World);
+            AvatarSceneCompInner.transform.Rotate(0.0f, -OurInput.x * InputMultiplier, 0, Space.World);
             AvatarSceneCompOuter.transform.Rotate(OurInput.y * InputMultiplier, 0.0f, 0.0f, Space.Self);
             
         }
