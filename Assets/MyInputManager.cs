@@ -16,6 +16,9 @@ public class MyInputManager : MonoBehaviour
 
     public Color debugColor = new Color(1, 0, 0);
 
+    public LineRenderer RightHandRay;
+    private Vector3[] LinePositions = new Vector3[2];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,9 +41,14 @@ public class MyInputManager : MonoBehaviour
         Debug.DrawLine(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand), OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand)
         + RightHandAnchor.transform.forward * 50, debugColor);
 
-        Debug.DrawLine(OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand), OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand)
+        //Eller bare
+        Debug.DrawLine(LeftHandAnchor.transform.position, LeftHandAnchor.transform.position
         + LeftHandAnchor.transform.forward * 50, debugColor);
 
+        LinePositions[0] = RightHandAnchor.transform.position;
+        LinePositions[1] = LinePositions[0] + RightHandAnchor.transform.forward * 50;
+
+        RightHandRay.SetPositions(LinePositions);
         
     }
 }
