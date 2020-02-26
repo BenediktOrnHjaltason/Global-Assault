@@ -19,6 +19,7 @@ public class Collision_Cannon : MonoBehaviour
     private Vector3 AvatarWorldSpace;
     private float AvatarDotProduct;
     private Quaternion LookTowardsAvatar;
+    private Vector3 CannonAvatarDirection;
 
     private float SpawnTime;
 
@@ -59,18 +60,18 @@ public class Collision_Cannon : MonoBehaviour
 
 
         if (AvatarDotProduct > 0.2f)
-        { 
-            LookTowardsAvatar = Quaternion.LookRotation(-AvatarRigBase.transform.forward, AvatarRigBase.transform.up);
+        {
+            CannonAvatarDirection = AvatarRigBase.transform.position - Barrel.transform.position;
+
+            LookTowardsAvatar = Quaternion.LookRotation(CannonAvatarDirection, Vector3.Cross(CannonAvatarDirection, -CannonAvatarDirection));
 
             Barrel.transform.SetPositionAndRotation(Barrel.transform.position, LookTowardsAvatar);
-        }
 
-    
-
-        if (Time.time > shootSignal)
-        {
-            Instantiate(Projectile, Barrel.transform.position + (Barrel.transform.forward * 10), Barrel.transform.rotation);
-            shootSignal += 1.0f;
+            if (Time.time > shootSignal)
+            {
+                Instantiate(Projectile, Barrel.transform.position + (Barrel.transform.forward * 10), Barrel.transform.rotation);
+                shootSignal += 1.0f;
+            }
         }
 
     }
