@@ -4,24 +4,36 @@ using UnityEngine;
 
 public class Collision_Cannon : MonoBehaviour
 {
-
-    public GameObject ExplosionFX;
+    
+    public ParticleSystem ExplosionFX;
+    public ParticleSystem SmokeFX;
     public GameObject Platform;
     public GameObject Barrel;
     private AudioSource ExplosionSound;
     public GameObject AvatarRigBase;
+    public GameObject Projectile;
 
     private Vector3 AvatarWorldSpace;
     private float AvatarDotProduct;
     private Quaternion LookTowardsAvatar;
 
+    private float SpawnTime;
+
 
     private int health = 5;
+
+
+    //Eksplosjonen nekter å slutte å loope selv om den ikke skal!
+
+    private bool bExplosionIsPlaying;
+    private float timeAtStartOfExplosion;
 
     // Start is called before the first frame update
     void Start()
     {
         ExplosionSound = GetComponent<AudioSource>();
+
+        SpawnTime = Time.realtimeSinceStartup;
     }
 
     // Update is called once per frame
@@ -34,37 +46,53 @@ public class Collision_Cannon : MonoBehaviour
 
         //Debug.DrawLine(AvatarWorldSpace, AvatarWorldSpace + AvatarRigBase.transform.forward * 50, new Color(1,0,0), 2.0f);
 
+
+
         AvatarDotProduct = -Vector3.Dot(AvatarRigBase.transform.forward, transform.forward);
 
 
 
-        //if (AvatarDotProduct > 0.2f)
-        //{
-
-
-        LookTowardsAvatar = Quaternion.LookRotation(-AvatarRigBase.transform.forward, AvatarRigBase.transform.up);
-
-        Debug.Log("Avatar forward: " + AvatarRigBase.transform.forward);
+        if (AvatarDotProduct > 0.2f)
+        { 
+            LookTowardsAvatar = Quaternion.LookRotation(-AvatarRigBase.transform.forward, AvatarRigBase.transform.up);
 
             Barrel.transform.SetPositionAndRotation(Barrel.transform.position, LookTowardsAvatar);
-        //}
-        
+        }
+
+        /*
+        if (bExplosionIsPlaying && Time.time > timeAtStartOfExplosion + 4)
+        {
+            ExplosionFX.Stop();
+            bExplosionIsPlaying = false;
+        }
+        */
     }
 
     void OnTriggerEnter(Collider other)
     {
-        other.enabled = false;
 
+        Debug.Log("Cannon was hit");
+        other.enabled = false;
+        Destroy(other);
+
+
+        //Instantiate(ExplosionFX, transform.position + transform.forward * 10, transform.rotation);
         
-        Instantiate(ExplosionFX,transform.position, transform.rotation);
+
         ExplosionSound.Play();
+        ExplosionFX.Play();
+        //bExplosionIsPlaying = true;
+        //float timeAtStartOfExplosion = Time.time;
 
         health--;
-        Debug.LogWarning("Health left: " + health);
 
-        if (health < 1) { 
+        if (health == 2) SmokeFX.Play();
+
+        else if (health < 1) { 
             Destroy(Barrel);
             Destroy(Platform);
+            Destroy(SmokeFX);
+            Destroy(ExplosionFX);
             Destroy(this); }
     }
 }

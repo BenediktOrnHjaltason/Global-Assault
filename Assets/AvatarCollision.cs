@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AvatarCollision : MonoBehaviour
 {
+
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
