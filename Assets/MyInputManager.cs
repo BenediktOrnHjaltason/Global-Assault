@@ -58,25 +58,24 @@ public class MyInputManager : MonoBehaviour
 
 
                 //Yes. Tegner debug line i editor fra kontrollernes forward vector :D
-        Debug.DrawLine(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand), OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand)
-        + RightHandAnchor.transform.forward * 50, debugColor);
+        //Debug.DrawLine(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand), OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand)
+        //+ RightHandAnchor.transform.forward * 50, debugColor);
 
         //Eller bare
-        Debug.DrawLine(LeftHandAnchor.transform.position, LeftHandAnchor.transform.position
-        + LeftHandAnchor.transform.forward * 50, debugColor);
+        //Debug.DrawLine(LeftHandAnchor.transform.position, LeftHandAnchor.transform.position
+        //+ LeftHandAnchor.transform.forward * 50, debugColor);
 
         OurInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
 
 
-        if (OurInput.x != 0 || OurInput.y != 0)
-        {
+        //if (OurInput.x != 0 || OurInput.y != 0)
+        //{
             AvatarSceneCompInner.transform.Rotate(0.0f, -OurInput.x * InputMultiplier, 0, Space.World);
             AvatarSceneCompOuter.transform.Rotate(OurInput.y * InputMultiplier, 0.0f, 0.0f, Space.Self);
             
-        }
+        //}
 
-
-
+        //--Siktelinjen til pistolen
         LinePositions[0] = RightHandAnchor.transform.position;
         LinePositions[1] = LinePositions[0] + RightHandAnchor.transform.forward * 50;
 
