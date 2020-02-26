@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ProjectileMovement : MonoBehaviour
 {
@@ -10,17 +8,17 @@ public class ProjectileMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Får ikke prosjektilet til å ødelegges?
+
         deltaTimeAccumulator += Time.deltaTime;
 
-        transform.position += transform.forward * 2;
+        transform.position += transform.forward * 4;
 
-        if (deltaTimeAccumulator > lifeSpan) DestroyImmediate(this, true);
-
+        if (deltaTimeAccumulator > lifeSpan) { Destroy(this); }
     }
 }

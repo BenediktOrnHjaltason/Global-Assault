@@ -29,6 +29,7 @@ public class MyInputManager : MonoBehaviour
     public GameObject Ball;
     public GameObject Projectile;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,18 +39,25 @@ public class MyInputManager : MonoBehaviour
     void Update()
     {
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) Instantiate(Projectile,
-            RightHandAnchor.transform.position + RightHandAnchor.transform.forward * 5, RightHandAnchor.transform.rotation);
-        
+            RightHandAnchor.transform.position + RightHandAnchor.transform.forward * 8, RightHandAnchor.transform.rotation);
+
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+        {
+            if (AvatarRigBase.transform.position.z + 10 > -250.0f)
+                AvatarRigBase.transform.localPosition.Set(0, 0, AvatarRigBase.transform.position.z + 10);
+        }
+
+
 
         //OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand);
         //Debug.LogWarning("Right Position: " + this.transform.position + OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand));
         //Debug.LogWarning("Left Potation: " + this.transform.position + OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand));
 
-        //Debug.LogWarning("Right Hand Anchor Forward Vector: " + RightHandAnchor.transform.forward);
-        //Debug.LogWarning("Left Hand Anchor Forward Vector: " + LeftHandAnchor.transform.forward);
+                //Debug.LogWarning("Right Hand Anchor Forward Vector: " + RightHandAnchor.transform.forward);
+                //Debug.LogWarning("Left Hand Anchor Forward Vector: " + LeftHandAnchor.transform.forward);
 
 
-        //Yes. Tegner debug line i editor fra kontrollernes forward vector :D
+                //Yes. Tegner debug line i editor fra kontrollernes forward vector :D
         Debug.DrawLine(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand), OVRInput.GetLocalControllerPosition(OVRInput.Controller.RHand)
         + RightHandAnchor.transform.forward * 50, debugColor);
 
