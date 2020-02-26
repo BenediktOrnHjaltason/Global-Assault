@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Collision_Cannon : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Collision_Cannon : MonoBehaviour
     public GameObject AvatarRigBase;
     public GameObject Projectile;
 
+    public Canvas ScreenOverlay;
+
     private Vector3 AvatarWorldSpace;
     private float AvatarDotProduct;
     private Quaternion LookTowardsAvatar;
@@ -22,11 +25,11 @@ public class Collision_Cannon : MonoBehaviour
 
     private int health = 5;
 
+    private Vector3 TwoDCoords;
+    public Text OverlayX;
 
-    //Eksplosjonen nekter å slutte å loope selv om den ikke skal!
-
-    private bool bExplosionIsPlaying;
-    private float timeAtStartOfExplosion;
+    //Skyting
+    private float shootSignal = 2.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,7 @@ public class Collision_Cannon : MonoBehaviour
         ExplosionSound = GetComponent<AudioSource>();
 
         SpawnTime = Time.realtimeSinceStartup;
+
     }
 
     // Update is called once per frame
@@ -42,11 +46,13 @@ public class Collision_Cannon : MonoBehaviour
         //Sjekka om jeg hadde riktig forward vektor fra avatar til midten av planeten. Skal bruke normalisert dot produktet av denne vektor og
         //forward vektor til kanonen til å sjekke om de skal skyte mot oss og rotere mot oss.
         //AvatarWorldSpace = AvatarRigBase.transform.TransformPoint(AvatarRigBase.transform.position);
+        //NOTE: Det funker ikke. Jeg må ha faktisk posisjon til spilleren minus posisjon til kanonen
 
 
         //Debug.DrawLine(AvatarWorldSpace, AvatarWorldSpace + AvatarRigBase.transform.forward * 50, new Color(1,0,0), 2.0f);
 
-
+        TwoDCoords = Camera.main.WorldToScreenPoint(this.transform.position);
+        OverlayX.transform.localPosition.Set(TwoDCoords.x, TwoDCoords.y, 0.0f);
 
         AvatarDotProduct = -Vector3.Dot(AvatarRigBase.transform.forward, transform.forward);
 
@@ -59,13 +65,14 @@ public class Collision_Cannon : MonoBehaviour
             Barrel.transform.SetPositionAndRotation(Barrel.transform.position, LookTowardsAvatar);
         }
 
-        /*
-        if (bExplosionIsPlaying && Time.time > timeAtStartOfExplosion + 4)
+    
+
+        if (Time.time > shootSignal)
         {
-            ExplosionFX.Stop();
-            bExplosionIsPlaying = false;
+            Instantiate(Projectile, Barrel.transform.position + (Barrel.transform.forward * 10), Barrel.transform.rotation);
+            shootSignal += 1.0f;
         }
-        */
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -73,16 +80,11 @@ public class Collision_Cannon : MonoBehaviour
 
         Debug.Log("Cannon was hit");
         other.enabled = false;
-        Destroy(other);
-
-
-        //Instantiate(ExplosionFX, transform.position + transform.forward * 10, transform.rotation);
-        
+        Destroy(other);      
 
         ExplosionSound.Play();
         ExplosionFX.Play();
-        //bExplosionIsPlaying = true;
-        //float timeAtStartOfExplosion = Time.time;
+
 
         health--;
 
