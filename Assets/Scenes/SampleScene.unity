@@ -332,14 +332,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7a3e7ffa8c5cb8e49b3b1901cc09dc97, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 91
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1001,7 +1001,7 @@ MonoBehaviour:
   AvatarRigBase: {fileID: 1675273101}
   AvatarSceneCompInner: {fileID: 2054936136}
   AvatarSceneCompOuter: {fileID: 872161908}
-  InputMultiplier: 1
+  InputMultiplier: 0.6
   Ball: {fileID: 1416882629}
   Projectile: {fileID: 8261796792013584985, guid: f56e18e35e3b4fa4d848f7e270a3aee0,
     type: 3}
@@ -1129,6 +1129,7 @@ GameObject:
   - component: {fileID: 1416882632}
   - component: {fileID: 1416882631}
   - component: {fileID: 1416882630}
+  - component: {fileID: 1416882634}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -1210,6 +1211,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1416882634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416882629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a17d1113a03e040ae919f87a26cf93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startAmountCannons: 4
+  AvatarRigBase: {fileID: 1675273101}
+  PFCannonBase: {fileID: 6311287992216682724, guid: 01a32244a5d788c428b47e9c3bf3303e,
+    type: 3}
+  Cannons: []
 --- !u!4 &1427258808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011428506136, guid: ecdd96beb7f93494880c052dfccf9dc1,
@@ -1332,7 +1350,7 @@ PrefabInstance:
     - target: {fileID: 7259555346070483836, guid: 01a32244a5d788c428b47e9c3bf3303e,
         type: 3}
       propertyPath: m_Volume
-      value: 0.571
+      value: 0.281
       objectReference: {fileID: 0}
     - target: {fileID: 7530598119800966198, guid: 01a32244a5d788c428b47e9c3bf3303e,
         type: 3}

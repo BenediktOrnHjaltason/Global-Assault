@@ -14,7 +14,7 @@ public class Collision_Cannon : MonoBehaviour
     public GameObject AvatarRigBase;
     public GameObject Projectile;
 
-    public Canvas ScreenOverlay;
+    private Canvas ScreenOverlay;
 
     private Vector3 AvatarWorldSpace;
     private float AvatarDotProduct;
@@ -27,7 +27,9 @@ public class Collision_Cannon : MonoBehaviour
     private int health = 5;
 
     private Vector3 TwoDCoords;
-    public Text OverlayX;
+    private Text OverlayX;
+
+
 
     //Skyting
     private float shootSignal = 2.0f;
@@ -47,25 +49,23 @@ public class Collision_Cannon : MonoBehaviour
         //Sjekka om jeg hadde riktig forward vektor fra avatar til midten av planeten. Skal bruke normalisert dot produktet av denne vektor og
         //forward vektor til kanonen til å sjekke om de skal skyte mot oss og rotere mot oss.
         //AvatarWorldSpace = AvatarRigBase.transform.TransformPoint(AvatarRigBase.transform.position);
-        //NOTE: Det funker ikke. Jeg må ha faktisk posisjon til spilleren minus posisjon til kanonen
-
 
         //Debug.DrawLine(AvatarWorldSpace, AvatarWorldSpace + AvatarRigBase.transform.forward * 50, new Color(1,0,0), 2.0f);
 
-        TwoDCoords = Camera.main.WorldToScreenPoint(this.transform.position);
-        OverlayX.transform.localPosition.Set(TwoDCoords.x, TwoDCoords.y, 0.0f);
+        //TwoDCoords = Camera.main.WorldToScreenPoint(this.transform.position);
+        //OverlayX.transform.localPosition.Set(TwoDCoords.x, TwoDCoords.y, 0.0f);
 
         AvatarDotProduct = -Vector3.Dot(AvatarRigBase.transform.forward, transform.forward);
 
 
 
-        if (AvatarDotProduct > 0.2f)
+        if (AvatarDotProduct > 0.45f)
         {
             CannonAvatarDirection = AvatarRigBase.transform.position - Barrel.transform.position;
-
-            LookTowardsAvatar = Quaternion.LookRotation(CannonAvatarDirection, Vector3.Cross(CannonAvatarDirection, -CannonAvatarDirection));
+            LookTowardsAvatar = Quaternion.LookRotation(CannonAvatarDirection/*, Vector3.Cross(CannonAvatarDirection, -CannonAvatarDirection)*/);
 
             Barrel.transform.SetPositionAndRotation(Barrel.transform.position, LookTowardsAvatar);
+            //Barrel.transform.
 
             if (Time.time > shootSignal)
             {
