@@ -18,6 +18,7 @@ public class Collision_Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.LogWarning("Projectile hit cannon(OnTrigger)");
+        enabled = false;
+        Destroy(this);
     }
 }
