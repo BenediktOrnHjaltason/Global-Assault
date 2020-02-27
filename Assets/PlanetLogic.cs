@@ -11,15 +11,19 @@ public class PlanetLogic : MonoBehaviour
 
     public GameObject AvatarRigBase;
     public GameObject PFCannonBase;
+    public GameObject Mothership;
 
     private float timeInterval;
     public int CannonsAlive;
+
+    private float firstTimeLaunchMothership = 10.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         //timeInterval = Time.time + 7.0f;
-        //SpawnCannons(startAmountCannons);
+        //SpawnCannons(startAmountCannons)
+
     }
 
     // Update is called once per frame
@@ -36,6 +40,17 @@ public class PlanetLogic : MonoBehaviour
             timeInterval = Time.time + 7.0f;
         }
         */
+
+
+        if (Time.time > firstTimeLaunchMothership)
+        {
+
+            //Mothership må ha referanse til Avatar for å kunne gi videre til missilene hun skyter ut
+            Instantiate(Mothership, transform.position, transform.rotation).GetComponent<MotherShip>().AvatarRigBase = AvatarRigBase;
+
+            firstTimeLaunchMothership = 1000.0f;
+
+        }
 
     }
 
