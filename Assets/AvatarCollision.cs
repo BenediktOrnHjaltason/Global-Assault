@@ -23,6 +23,7 @@ public class AvatarCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+
         Destroy(other);
 
         ExplosionSound.Play();

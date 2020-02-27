@@ -5,12 +5,9 @@ using UnityEngine.UI;
 
 public class Collision_Cannon : MonoBehaviour
 {
-    
-    public ParticleSystem ExplosionFX;
     public ParticleSystem SmokeFX;
     public GameObject Platform;
     public GameObject Barrel;
-    private AudioSource ExplosionSound;
     public GameObject AvatarRigBase;
     public GameObject Projectile;
     public GameObject Light;
@@ -45,10 +42,7 @@ public class Collision_Cannon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ExplosionSound = GetComponent<AudioSource>();
-
         SpawnTime = Time.realtimeSinceStartup;
-
     }
 
     // Update is called once per frame
@@ -92,8 +86,6 @@ public class Collision_Cannon : MonoBehaviour
         other.enabled = false;
         Destroy(other);      
 
-        ExplosionSound.Play();
-        ExplosionFX.Play();
 
 
         health--;
@@ -107,7 +99,6 @@ public class Collision_Cannon : MonoBehaviour
             Destroy(Barrel);
             Destroy(Platform);
             Destroy(SmokeFX);
-            Destroy(ExplosionFX);
             Destroy(Light);
             GetComponent<Light>().enabled = false;
             Destroy(this); }

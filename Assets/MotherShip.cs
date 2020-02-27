@@ -50,8 +50,8 @@ public class MotherShip : MonoBehaviour
         other.enabled = false;
         Destroy(other);
 
-        ExplosionSound.Play();
-        ExplosionFX.Play();
+        //ExplosionSound.Play();
+        //ExplosionFX.Play();
 
 
         health--;
