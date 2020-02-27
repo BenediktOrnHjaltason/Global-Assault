@@ -210,6 +210,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplosionFX: {fileID: 6185908078620156552}
   SmokeFX: {fileID: 4876797438475534805}
+  Mesh: {fileID: 2350018326666400532}
+  Light: {fileID: 6594396891623778262}
+  AvatarRigBase: {fileID: 0}
 --- !u!54 &5663890475361699815
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -383,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011112872720, guid: 85a8865d1bf4a63478038fae23776de8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 9.698691
+      value: 47.96756
       objectReference: {fileID: 0}
     - target: {fileID: 198000011104581616, guid: 85a8865d1bf4a63478038fae23776de8,
         type: 3}
@@ -548,6 +551,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c2948abc5dc72b4d9303acf699c9240, type: 3}
+--- !u!1 &2350018326666400532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 5c2948abc5dc72b4d9303acf699c9240,
+    type: 3}
+  m_PrefabInstance: {fileID: 6034010007942760989}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1641466335647834375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 5c2948abc5dc72b4d9303acf699c9240,
