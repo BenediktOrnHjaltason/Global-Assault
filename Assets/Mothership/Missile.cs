@@ -48,7 +48,7 @@ public class Missile : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        //Får lære mer kollisjonsfiltering senere :P
+        //Får lære mer kollisjonsfiltrering senere :P
         if (!other.name.Contains("Mot")) { 
         
             foreach (Transform child in transform) GameObject.Destroy(child.gameObject);

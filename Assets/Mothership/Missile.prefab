@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7709e8ba1dc16438d40c7f74036475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 50
+  velocity: 100
   AvatarRigBase: {fileID: 0}
 --- !u!136 &5687675048350608965
 CapsuleCollider:

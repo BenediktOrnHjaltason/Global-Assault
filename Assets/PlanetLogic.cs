@@ -16,7 +16,7 @@ public class PlanetLogic : MonoBehaviour
     private float timeInterval;
     public int CannonsAlive;
 
-    private float firstTimeLaunchMothership = 10.0f;
+    private float firstTimeLaunchMothership = 5.0f;
 
     // Start is called before the first frame update
     void Start()
