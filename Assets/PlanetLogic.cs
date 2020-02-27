@@ -12,22 +12,33 @@ public class PlanetLogic : MonoBehaviour
     public GameObject AvatarRigBase;
     public GameObject PFCannonBase;
 
-    public List<GameObject> Cannons;
-
+    private float timeInterval;
+    public int CannonsAlive;
 
     // Start is called before the first frame update
     void Start()
     {
+        timeInterval = Time.time + 7.0f;
         SpawnCannons(startAmountCannons);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+
+        //Sjekke hvert 7. sekund
+        if(Time.time > timeInterval)
+        {
+            if (CannonsAlive < 2) SpawnCannons(3 + (int)Random.Range(1, 5));
+
+
+            timeInterval = Time.time + 7.0f;
+        }
+
     }
 
-    void SpawnCannons(int number)
+    void SpawnCannons(int number, bool firstTimeSpawn = false)
     {
         GameObject NewCannon;
 
@@ -36,9 +47,14 @@ public class PlanetLogic : MonoBehaviour
             Vector3 Position = new Vector3(Random.Range(-100.0f, 100.0f), Random.Range(-100.0f, 100.0f), Random.Range(-100.0f, 100.0f)).normalized * 197;
 
             NewCannon = Instantiate(PFCannonBase, Position, Quaternion.LookRotation(Position));
+
+            //Kanonene trenger referanse til spiller, så de kan kalkulere hvor de skal skyte
             NewCannon.GetComponent<Collision_Cannon>().AvatarRigBase = this.AvatarRigBase;
-            Cannons.Add(NewCannon);
+
+            //Kanonene trenger referanse til planeten, så de kan oppdatere tall over overlevende mtp spawning
+            NewCannon.GetComponent<Collision_Cannon>().PlanetRef = this;
+
+            CannonsAlive++;
         }
     }
-
 }

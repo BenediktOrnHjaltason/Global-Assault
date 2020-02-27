@@ -14,6 +14,9 @@ public class Collision_Cannon : MonoBehaviour
     public GameObject AvatarRigBase;
     public GameObject Projectile;
 
+    //Referanse til planeten så kanonene kan oppdatere status over antall levende mtp spawning
+    public PlanetLogic PlanetRef;
+
     private Canvas ScreenOverlay;
 
     private Vector3 AvatarWorldSpace;
@@ -29,10 +32,14 @@ public class Collision_Cannon : MonoBehaviour
     private Vector3 TwoDCoords;
     private Text OverlayX;
 
+    public static int AliveCount = 0;
+
 
 
     //Skyting
     private float shootSignal = 2.0f;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -55,22 +62,23 @@ public class Collision_Cannon : MonoBehaviour
         //TwoDCoords = Camera.main.WorldToScreenPoint(this.transform.position);
         //OverlayX.transform.localPosition.Set(TwoDCoords.x, TwoDCoords.y, 0.0f);
 
+        
         AvatarDotProduct = -Vector3.Dot(AvatarRigBase.transform.forward, transform.forward);
 
-
-
+        //Slik at kanonene kun skyter mot spiller når man er i fornuftig vinkel
         if (AvatarDotProduct > 0.45f)
         {
+
+
             CannonAvatarDirection = AvatarRigBase.transform.position - Barrel.transform.position;
             LookTowardsAvatar = Quaternion.LookRotation(CannonAvatarDirection/*, Vector3.Cross(CannonAvatarDirection, -CannonAvatarDirection)*/);
 
             Barrel.transform.SetPositionAndRotation(Barrel.transform.position, LookTowardsAvatar);
-            //Barrel.transform.
 
             if (Time.time > shootSignal)
             {
                 Instantiate(Projectile, Barrel.transform.position + (Barrel.transform.forward * 10), Barrel.transform.rotation);
-                shootSignal += 1.0f;
+                shootSignal = Time.time + 1.0f;
             }
         }
 
@@ -91,11 +99,15 @@ public class Collision_Cannon : MonoBehaviour
 
         if (health == 2) SmokeFX.Play();
 
-        else if (health < 1) { 
+        else if (health < 1) {
+
+            --PlanetRef.CannonsAlive;
+
             Destroy(Barrel);
             Destroy(Platform);
             Destroy(SmokeFX);
             Destroy(ExplosionFX);
+            GetComponent<Light>().enabled = false;
             Destroy(this); }
     }
 }
