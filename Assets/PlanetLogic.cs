@@ -18,15 +18,15 @@ public class PlanetLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeInterval = Time.time + 7.0f;
-        SpawnCannons(startAmountCannons);
+        //timeInterval = Time.time + 7.0f;
+        //SpawnCannons(startAmountCannons);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
+        /*
         //Sjekke hvert 7. sekund
         if(Time.time > timeInterval)
         {
@@ -35,6 +35,7 @@ public class PlanetLogic : MonoBehaviour
 
             timeInterval = Time.time + 7.0f;
         }
+        */
 
     }
 

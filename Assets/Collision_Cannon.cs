@@ -13,6 +13,7 @@ public class Collision_Cannon : MonoBehaviour
     private AudioSource ExplosionSound;
     public GameObject AvatarRigBase;
     public GameObject Projectile;
+    public GameObject Light;
 
     //Referanse til planeten så kanonene kan oppdatere status over antall levende mtp spawning
     public PlanetLogic PlanetRef;
@@ -107,6 +108,7 @@ public class Collision_Cannon : MonoBehaviour
             Destroy(Platform);
             Destroy(SmokeFX);
             Destroy(ExplosionFX);
+            Destroy(Light);
             GetComponent<Light>().enabled = false;
             Destroy(this); }
     }
