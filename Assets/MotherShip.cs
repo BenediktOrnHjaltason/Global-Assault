@@ -70,8 +70,7 @@ public class MotherShip : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Mothership collided with: " + other.name);
-        //Brute force kollisjonsfiltrering. I know :P
-        if (!other.name.StartsWith("Mis") && !other.name.StartsWith("Cyl") && !other.name.StartsWith("PF_Mot")) { 
+        if (other.name.StartsWith("Proj")) { 
         other.enabled = false;
         Destroy(other);
 

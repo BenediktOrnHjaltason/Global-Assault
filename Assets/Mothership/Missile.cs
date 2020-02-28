@@ -36,6 +36,7 @@ public class Missile : MonoBehaviour
 
         aliveTime = Time.time - spawnTime;
 
+        //Utskytning og følg etter spiller
         if (aliveTime < 4.5f && aliveTime > 2.5f)
         {
 

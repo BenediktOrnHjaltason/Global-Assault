@@ -19,7 +19,6 @@ public class MyInputManager : MonoBehaviour
     public GameObject AvatarSceneCompInner;
     public GameObject AvatarSceneCompOuter;
 
-    private Vector3 AnglesToTurn;
     private Vector2 OurInput;
     public float InputMultiplier;
 
@@ -68,12 +67,10 @@ public class MyInputManager : MonoBehaviour
         OurInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
 
 
-        //if (OurInput.x != 0 || OurInput.y != 0)
-        //{
             AvatarSceneCompInner.transform.Rotate(0.0f, -OurInput.x * InputMultiplier * Time.deltaTime, 0, Space.World);
             AvatarSceneCompOuter.transform.Rotate(OurInput.y * InputMultiplier * Time.deltaTime, 0.0f, 0.0f, Space.Self);
             
-        //}
+
 
         //--Siktelinjen til pistolen
         LinePositions[0] = RightHandAnchor.transform.position;

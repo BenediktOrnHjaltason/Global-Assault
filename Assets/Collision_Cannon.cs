@@ -19,7 +19,6 @@ public class Collision_Cannon : MonoBehaviour
 
     private Canvas ScreenOverlay;
 
-    private Vector3 AvatarWorldSpace;
     private float AvatarDotProduct;
     private Quaternion LookTowardsAvatar;
     private Vector3 CannonAvatarDirection;
@@ -28,12 +27,6 @@ public class Collision_Cannon : MonoBehaviour
 
 
     private int health = 5;
-
-    private Vector3 TwoDCoords;
-    private Text OverlayX;
-
-    public static int AliveCount = 0;
-
 
 
     //Skyting
@@ -51,16 +44,9 @@ public class Collision_Cannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Sjekka om jeg hadde riktig forward vektor fra avatar til midten av planeten. Skal bruke normalisert dot produktet av denne vektor og
-        //forward vektor til kanonen til å sjekke om de skal skyte mot oss og rotere mot oss.
-        //AvatarWorldSpace = AvatarRigBase.transform.TransformPoint(AvatarRigBase.transform.position);
-
-        //Debug.DrawLine(AvatarWorldSpace, AvatarWorldSpace + AvatarRigBase.transform.forward * 50, new Color(1,0,0), 2.0f);
-
-        //TwoDCoords = Camera.main.WorldToScreenPoint(this.transform.position);
-        //OverlayX.transform.localPosition.Set(TwoDCoords.x, TwoDCoords.y, 0.0f);
-
-        
+        //Bruker normaliserte dot-produktet av kanonens og avatars
+        //forward vektor til å sjekke om de skal skyte mot oss og rotere mot oss.
+       
         AvatarDotProduct = -Vector3.Dot(AvatarRigBase.transform.forward, transform.forward);
 
         //Slik at kanonene kun skyter mot spiller når man er i fornuftig vinkel
