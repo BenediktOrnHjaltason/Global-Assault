@@ -715,7 +715,7 @@ MonoBehaviour:
   AvatarRigBase: {fileID: 1675273101}
   AvatarSceneCompInner: {fileID: 2054936136}
   AvatarSceneCompOuter: {fileID: 872161908}
-  InputMultiplier: 0.6
+  InputMultiplier: 20
   Ball: {fileID: 1416882629}
   Projectile: {fileID: 8261796792013584985, guid: f56e18e35e3b4fa4d848f7e270a3aee0,
     type: 3}
@@ -944,6 +944,7 @@ MonoBehaviour:
   Mothership: {fileID: 5208808866612055187, guid: bd87102df0d13b243bbf0447076d2858,
     type: 3}
   CannonsAlive: 0
+  bMothershipIsAlive: 0
 --- !u!4 &1427258808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011428506136, guid: ecdd96beb7f93494880c052dfccf9dc1,

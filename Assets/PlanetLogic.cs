@@ -16,13 +16,14 @@ public class PlanetLogic : MonoBehaviour
     private float timeInterval;
     public int CannonsAlive;
 
-    private float firstTimeLaunchMothership = 5.0f;
+    private float launchMothership = 20.0f;
+    public bool bMothershipIsAlive = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        //timeInterval = Time.time + 7.0f;
-        //SpawnCannons(startAmountCannons)
+        timeInterval = Time.time + 7.0f;
+        SpawnCannons(startAmountCannons);
 
     }
 
@@ -30,28 +31,33 @@ public class PlanetLogic : MonoBehaviour
     void Update()
     {
 
-        /*
+        
         //Sjekke hvert 7. sekund
         if(Time.time > timeInterval)
         {
             if (CannonsAlive < 2) SpawnCannons(3 + (int)Random.Range(1, 5));
 
+            
 
             timeInterval = Time.time + 7.0f;
         }
-        */
-
-
-        if (Time.time > firstTimeLaunchMothership)
+        
+        
+        if ( Time.time > launchMothership)
         {
-
             //Mothership må ha referanse til Avatar for å kunne gi videre til missilene hun skyter ut
-            Instantiate(Mothership, transform.position, transform.rotation).GetComponent<MotherShip>().AvatarRigBase = AvatarRigBase;
+            if (!bMothershipIsAlive) 
+            { 
+                MotherShip New = Instantiate(Mothership, transform.position, transform.rotation).GetComponent<MotherShip>();
 
-            firstTimeLaunchMothership = 1000.0f;
+                New.AvatarRigBase = AvatarRigBase;
+                New.PlanetRef = this;
+                bMothershipIsAlive = true;
+            }
 
+            launchMothership = Time.time + 30.0f;
         }
-
+        
     }
 
     void SpawnCannons(int number, bool firstTimeSpawn = false)
@@ -60,6 +66,7 @@ public class PlanetLogic : MonoBehaviour
 
         for (int i = 0; i < number; i++)
         {
+            //Sørge for at kanonene alltid spawner akkurat på overflaten
             Vector3 Position = new Vector3(Random.Range(-100.0f, 100.0f), Random.Range(-100.0f, 100.0f), Random.Range(-100.0f, 100.0f)).normalized * 197;
 
             NewCannon = Instantiate(PFCannonBase, Position, Quaternion.LookRotation(Position));

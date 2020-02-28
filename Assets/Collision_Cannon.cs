@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Collision_Cannon : MonoBehaviour
 {
     public ParticleSystem SmokeFX;
+    public ParticleSystem ExplosionFX;
+    private AudioSource ExplosionSound;
     public GameObject Platform;
     public GameObject Barrel;
     public GameObject AvatarRigBase;
@@ -43,6 +45,7 @@ public class Collision_Cannon : MonoBehaviour
     void Start()
     {
         SpawnTime = Time.realtimeSinceStartup;
+        ExplosionSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -61,7 +64,7 @@ public class Collision_Cannon : MonoBehaviour
         AvatarDotProduct = -Vector3.Dot(AvatarRigBase.transform.forward, transform.forward);
 
         //Slik at kanonene kun skyter mot spiller når man er i fornuftig vinkel
-        if (AvatarDotProduct > 0.45f)
+        if (AvatarDotProduct > 0.45f && Barrel)
         {
 
 
@@ -81,12 +84,8 @@ public class Collision_Cannon : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-
-        Debug.Log("Cannon was hit");
-        other.enabled = false;
-        Destroy(other);      
-
-
+        ExplosionFX.Play();
+        ExplosionSound.Play();
 
         health--;
 
@@ -100,7 +99,6 @@ public class Collision_Cannon : MonoBehaviour
             Destroy(Platform);
             Destroy(SmokeFX);
             Destroy(Light);
-            GetComponent<Light>().enabled = false;
             Destroy(this); }
     }
 }

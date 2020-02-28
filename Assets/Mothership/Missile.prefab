@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36161d542d4cc534598fdb72623b3637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeSpan: 0
+  velocity: 0
 --- !u!114 &6137407507509835359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +65,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 100
   AvatarRigBase: {fileID: 0}
+  ExplosionFX: {fileID: 5265358293313763226}
+  Mesh: {fileID: 1115626383407350867}
+  ThrustLight: {fileID: 7098341776895371398}
+  Exhaust: {fileID: 6047019661450470642}
 --- !u!136 &5687675048350608965
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5186,11 +5190,32 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198000010217891986, guid: ecdd96beb7f93494880c052dfccf9dc1,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000010687303002, guid: ecdd96beb7f93494880c052dfccf9dc1,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000012569031976, guid: ecdd96beb7f93494880c052dfccf9dc1,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
 --- !u!4 &5450223561081541034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011428506136, guid: ecdd96beb7f93494880c052dfccf9dc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5453050522182482866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5265358293313763226 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198000012942003240, guid: ecdd96beb7f93494880c052dfccf9dc1,
     type: 3}
   m_PrefabInstance: {fileID: 5453050522182482866}
   m_PrefabAsset: {fileID: 0}

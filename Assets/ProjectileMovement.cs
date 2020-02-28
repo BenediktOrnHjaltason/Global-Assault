@@ -2,8 +2,7 @@
 
 public class ProjectileMovement : MonoBehaviour
 {
-    public float lifeSpan;
-    private float deltaTimeAccumulator;
+    public float velocity;
 
     // Start is called before the first frame update
     void Start()
@@ -13,12 +12,7 @@ public class ProjectileMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Får ikke prosjektilet til å ødelegges?
+        transform.position += (transform.forward * velocity * Time.deltaTime);
 
-        deltaTimeAccumulator += Time.deltaTime;
-
-        transform.position += transform.forward * 4;
-
-        if (deltaTimeAccumulator > lifeSpan) { Destroy(this); }
     }
 }

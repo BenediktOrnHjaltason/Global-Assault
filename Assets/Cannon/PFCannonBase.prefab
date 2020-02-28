@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3268e36bbdb3dbe4fae30a8f157943f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplosionFX: {fileID: 3438822964361784647}
   SmokeFX: {fileID: 198000011982635067}
+  ExplosionFX: {fileID: 3438822964361784647}
   Platform: {fileID: 8708826971578065099}
   Barrel: {fileID: 2346738330108892609}
   AvatarRigBase: {fileID: 0}
@@ -227,7 +227,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7a3e7ffa8c5cb8e49b3b1901cc09dc97, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.281
+  m_Volume: 0.608
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -633,7 +633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011428506136, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000011428506136, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
       propertyPath: m_LocalPosition.z

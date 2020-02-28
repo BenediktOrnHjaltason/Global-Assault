@@ -6,7 +6,11 @@ public class Missile : MonoBehaviour
 {
     public float velocity;
     public GameObject AvatarRigBase;
-
+    public ParticleSystem ExplosionFX;
+    public AudioSource ExplosionSound;
+    public GameObject Mesh;
+    public GameObject ThrustLight;
+    public ParticleSystem Exhaust;
 
     private float spawnTime;
     private float lerpTime = 0;
@@ -22,6 +26,7 @@ public class Missile : MonoBehaviour
     {
         spawnTime = Time.time;
         StartRotation = transform.rotation;
+        ExplosionSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,9 +54,14 @@ public class Missile : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //Får lære mer kollisjonsfiltrering senere :P
-        if (!other.name.Contains("Mot")) { 
-        
-            foreach (Transform child in transform) GameObject.Destroy(child.gameObject);
+        if (!other.name.Contains("Mot")) {
+
+            ExplosionFX.Play();
+            ExplosionSound.Play();
+
+            Destroy(Mesh);
+            Destroy(ThrustLight);
+            Destroy(Exhaust);
             GameObject.Destroy(this);
         }
     }
