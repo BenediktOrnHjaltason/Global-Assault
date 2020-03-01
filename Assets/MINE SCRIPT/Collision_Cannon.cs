@@ -14,14 +14,10 @@ public class Collision_Cannon : MonoBehaviour
     public GameObject Projectile;
     public GameObject Light;
 
-    //Referanse til planeten så kanonene kan oppdatere status over antall levende mtp spawning
+    //Referanse til planeten så kanonene kan oppdatere status over antall levende mtp respawning. Satt fra planeten ved spawning.
     public PlanetLogic PlanetRef;
 
-    private Canvas ScreenOverlay;
-
     private float AvatarDotProduct;
-    private Quaternion LookTowardsAvatar;
-    private Vector3 CannonAvatarDirection;
 
     private float SpawnTime;
 
@@ -44,20 +40,15 @@ public class Collision_Cannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Bruker normaliserte dot-produktet av kanonens og avatars
+        //Bruker normaliserte dot-produktet av kanonenes og avatars
         //forward vektor til å sjekke om de skal skyte mot oss og rotere mot oss.
        
-        AvatarDotProduct = -Vector3.Dot(AvatarRigBase.transform.forward, transform.forward);
+        AvatarDotProduct = Vector3.Dot(AvatarRigBase.transform.forward, transform.forward);
 
-        //Slik at kanonene kun skyter mot spiller når man er i fornuftig vinkel
-        if (AvatarDotProduct > 0.45f && Barrel)
+        //Slik at kanonene kun skyter mot spiller når man er over kanonens horisont
+        if (AvatarDotProduct < -0.45f && Barrel)
         {
-
-
-            CannonAvatarDirection = AvatarRigBase.transform.position - Barrel.transform.position;
-            LookTowardsAvatar = Quaternion.LookRotation(CannonAvatarDirection/*, Vector3.Cross(CannonAvatarDirection, -CannonAvatarDirection)*/);
-
-            Barrel.transform.SetPositionAndRotation(Barrel.transform.position, LookTowardsAvatar);
+            Barrel.transform.rotation = Quaternion.LookRotation(AvatarRigBase.transform.position - Barrel.transform.position);
 
             if (Time.time > shootSignal)
             {

@@ -12,9 +12,8 @@ public class Missile : MonoBehaviour
     public GameObject ThrustLight;
     public ParticleSystem Exhaust;
 
-    private float spawnTime;
     private float lerpTime = 0;
-    private float aliveTime;
+    private float timeAlive;
 
     private Quaternion StartRotation;
     private Vector3 AvatarTurnLocation;
@@ -24,7 +23,6 @@ public class Missile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnTime = Time.time;
         StartRotation = transform.rotation;
         ExplosionSound = GetComponent<AudioSource>();
     }
@@ -34,12 +32,11 @@ public class Missile : MonoBehaviour
     {
         transform.position += (transform.forward * velocity * Time.deltaTime);
 
-        aliveTime = Time.time - spawnTime;
+        timeAlive += Time.deltaTime;
 
         //Utskytning og følg etter spiller
-        if (aliveTime < 4.5f && aliveTime > 2.5f)
+        if (timeAlive < 4.5f && timeAlive > 2.5f)
         {
-
             lerpTime += Time.deltaTime * 0.5f;
 
             if (!turnLocationsTaken) { 
@@ -50,14 +47,13 @@ public class Missile : MonoBehaviour
             transform.rotation = Quaternion.Lerp(StartRotation, Quaternion.LookRotation((
                 AvatarRigBase.transform.position - transform.position)), lerpTime);
         }
-        else if (aliveTime > 4.5f) 
+        else if (timeAlive > 4.5f) 
             transform.rotation = (Quaternion.Lerp(Quaternion.LookRotation(transform.forward), 
             Quaternion.LookRotation(AvatarRigBase.transform.position - transform.position).normalized, 0.4f));
         
     }
     void OnTriggerEnter(Collider other)
     {
-        //Får lære mer kollisjonsfiltrering senere :P
         if (!other.name.Contains("Mot")) {
 
             ExplosionFX.Play();
@@ -69,5 +65,4 @@ public class Missile : MonoBehaviour
             GameObject.Destroy(this);
         }
     }
-
 }
