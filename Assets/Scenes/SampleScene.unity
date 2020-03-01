@@ -321,7 +321,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7a3e7ffa8c5cb8e49b3b1901cc09dc97, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -709,14 +709,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RightHandAnchor: {fileID: 890367197}
   LeftHandAnchor: {fileID: 2106150661}
-  debugColor: {r: 1, g: 0, b: 0, a: 1}
   RightHandRay: {fileID: 1377141419}
   Gun: {fileID: 2102560629}
   AvatarRigBase: {fileID: 1675273101}
   AvatarSceneCompInner: {fileID: 2054936136}
   AvatarSceneCompOuter: {fileID: 872161908}
   InputMultiplier: 20
-  Ball: {fileID: 1416882629}
   Projectile: {fileID: 8261796792013584985, guid: f56e18e35e3b4fa4d848f7e270a3aee0,
     type: 3}
 --- !u!4 &1377141418

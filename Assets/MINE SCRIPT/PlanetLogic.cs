@@ -17,6 +17,8 @@ public class PlanetLogic : MonoBehaviour
     public int CannonsAlive;
 
     private float launchMothership = 20.0f;
+
+    //public siden den blir satt fra MotherShip-objektet
     public bool bMothershipIsAlive = false;
 
     // Start is called before the first frame update

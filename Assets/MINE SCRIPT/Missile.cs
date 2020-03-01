@@ -47,9 +47,12 @@ public class Missile : MonoBehaviour
                 MissileTurnLocation = transform.position;
                 turnLocationsTaken = true;
             }
-            Quaternion.Lerp(StartRotation, Quaternion.LookRotation((AvatarTurnLocation - MissileTurnLocation)), lerpTime);
+            transform.rotation = Quaternion.Lerp(StartRotation, Quaternion.LookRotation((
+                AvatarRigBase.transform.position - transform.position)), lerpTime);
         }
-        else if (aliveTime > 4.5f) transform.rotation = Quaternion.LookRotation((AvatarRigBase.transform.position - transform.position).normalized);
+        else if (aliveTime > 4.5f) 
+            transform.rotation = (Quaternion.Lerp(Quaternion.LookRotation(transform.forward), 
+            Quaternion.LookRotation(AvatarRigBase.transform.position - transform.position).normalized, 0.4f));
         
     }
     void OnTriggerEnter(Collider other)

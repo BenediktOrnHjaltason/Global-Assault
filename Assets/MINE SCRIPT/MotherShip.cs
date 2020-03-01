@@ -13,13 +13,11 @@ public class MotherShip : MonoBehaviour
 
     public GameObject AvatarRigBase;
     public GameObject Missile;
+
+    //Satt når den spawnes av Mothership
     public PlanetLogic PlanetRef;
 
-
-    private float yPos = 0;
-    private Vector3 NewPos;
-    private float spawnTime;
-    private float timeAlive;
+    private float timeAlive = 0;
     private bool bStoppedRising = false;
     private float deltaRise = 0.01f;
     
@@ -33,7 +31,6 @@ public class MotherShip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnTime = Time.time;
         ExplosionSound = GetComponent<AudioSource>();
     }
 
@@ -41,7 +38,7 @@ public class MotherShip : MonoBehaviour
     void Update()
     {
 
-        timeAlive = Time.time - spawnTime;
+        timeAlive += Time.deltaTime;
 
         //Komme opp fra nordpol, så hover
         if (!bStoppedRising && transform.position.y < 265.0f)

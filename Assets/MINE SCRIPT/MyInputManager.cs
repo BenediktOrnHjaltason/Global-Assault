@@ -9,7 +9,7 @@ public class MyInputManager : MonoBehaviour
     public Component RightHandAnchor;
     public Component LeftHandAnchor;
 
-    public Color debugColor = new Color(1, 0, 0);
+    private Color debugColor = new Color(1, 0, 0);
 
     public LineRenderer RightHandRay;
     private Vector3[] LinePositions = new Vector3[2];
@@ -25,7 +25,6 @@ public class MyInputManager : MonoBehaviour
     private Vector3 Axis1 = new Vector3(0.0f, 1.0f, 0.0f);
     private Vector3 Axis2 = new Vector3(1.0f, 0.0f, 0.0f);
 
-    public GameObject Ball;
     public GameObject Projectile;
 
 

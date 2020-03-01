@@ -112,7 +112,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7a3e7ffa8c5cb8e49b3b1901cc09dc97, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -212,6 +212,7 @@ MonoBehaviour:
   ExplosionFX: {fileID: 6185908078620156552}
   Mesh: {fileID: 2350018326666400532}
   Light: {fileID: 6594396891623778262}
+  ExplosionSound: {fileID: 0}
   AvatarRigBase: {fileID: 0}
   Missile: {fileID: 1009208069118859703, guid: 6cb155eedab2663428538206da1073b9, type: 3}
   PlanetRef: {fileID: 0}

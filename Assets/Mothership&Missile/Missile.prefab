@@ -66,6 +66,7 @@ MonoBehaviour:
   velocity: 100
   AvatarRigBase: {fileID: 0}
   ExplosionFX: {fileID: 5265358293313763226}
+  ExplosionSound: {fileID: 0}
   Mesh: {fileID: 1115626383407350867}
   ThrustLight: {fileID: 7098341776895371398}
   Exhaust: {fileID: 6047019661450470642}
@@ -95,7 +96,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7a3e7ffa8c5cb8e49b3b1901cc09dc97, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.58
+  m_Volume: 0.304
   m_Pitch: 1
   Loop: 0
   Mute: 0
