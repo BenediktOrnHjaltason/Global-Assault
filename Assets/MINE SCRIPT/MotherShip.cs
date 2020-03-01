@@ -14,7 +14,7 @@ public class MotherShip : MonoBehaviour
     public GameObject AvatarRigBase;
     public GameObject Missile;
 
-    //Satt når den spawnes av Mothership
+    //Satt fra planeten når den spawnes
     public PlanetLogic PlanetRef;
 
     private float timeAlive = 0;
