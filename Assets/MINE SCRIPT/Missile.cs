@@ -16,9 +16,6 @@ public class Missile : MonoBehaviour
     private float timeAlive;
 
     private Quaternion StartRotation;
-    private Vector3 AvatarTurnLocation;
-    private Vector3 MissileTurnLocation;
-    private bool turnLocationsTaken = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,11 +36,6 @@ public class Missile : MonoBehaviour
         {
             lerpTime += Time.deltaTime * 0.5f;
 
-            if (!turnLocationsTaken) { 
-                AvatarTurnLocation = AvatarRigBase.transform.position; 
-                MissileTurnLocation = transform.position;
-                turnLocationsTaken = true;
-            }
             transform.rotation = Quaternion.Lerp(StartRotation, Quaternion.LookRotation((
                 AvatarRigBase.transform.position - transform.position)), lerpTime);
         }
